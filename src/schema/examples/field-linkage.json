@@ -1,0 +1,43 @@
+{
+  "version": "0.1",
+  "title": "开发者信息登记",
+  "description": "演示字段联动:仅当就业状态为自由职业时,才出现平台与收入字段",
+  "fields": [
+    {
+      "key": "name",
+      "label": "姓名",
+      "type": "string",
+      "validation": { "required": true }
+    },
+    {
+      "key": "employmentStatus",
+      "label": "就业状态",
+      "type": "select",
+      "options": [
+        { "label": "在职", "value": "employed" },
+        { "label": "自由职业", "value": "freelance" },
+        { "label": "学生", "value": "student" }
+      ],
+      "validation": { "required": true }
+    },
+    {
+      "key": "platform",
+      "label": "主要接单平台",
+      "type": "select",
+      "options": [
+        { "label": "Upwork", "value": "upwork" },
+        { "label": "Freelancer", "value": "freelancer" },
+        { "label": "其他", "value": "other" }
+      ],
+      "visibleWhen": { "field": "employmentStatus", "equals": "freelance" },
+      "validation": { "required": true }
+    },
+    {
+      "key": "monthlyIncome",
+      "label": "月均收入(元)",
+      "type": "number",
+      "visibleWhen": { "field": "employmentStatus", "equals": "freelance" },
+      "validation": { "required": true, "min": 0 }
+    }
+  ]
+}

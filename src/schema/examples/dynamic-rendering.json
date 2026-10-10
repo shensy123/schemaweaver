@@ -1,0 +1,33 @@
+{
+  "version": "0.1",
+  "title": "会员注册",
+  "description": "演示动态渲染:字段列表 + type 决定控件种类",
+  "fields": [
+    {
+      "key": "nickname",
+      "label": "昵称",
+      "type": "string",
+      "placeholder": "2-20 个字符",
+      "validation": { "required": true, "minLength": 2, "maxLength": 20 }
+    },
+    {
+      "key": "age",
+      "label": "年龄",
+      "type": "number",
+      "validation": { "required": true, "min": 0, "max": 150 }
+    },
+    {
+      "key": "plan",
+      "label": "套餐",
+      "type": "select",
+      "options": [
+        { "label": "免费版", "value": "free" },
+        { "label": "专业版", "value": "pro" },
+        { "label": "企业版", "value": "enterprise" }
+      ],
+      "validation": { "required": true }
+    },
+    { "key": "subscribed", "label": "订阅产品动态邮件", "type": "boolean" },
+    { "key": "birthday", "label": "生日", "type": "date" }
+  ]
+}

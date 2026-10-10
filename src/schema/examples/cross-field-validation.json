@@ -1,0 +1,35 @@
+{
+  "version": "0.1",
+  "title": "项目周期设置",
+  "description": "演示跨字段校验:两次密码一致;结束日期晚于开始日期",
+  "fields": [
+    {
+      "key": "password",
+      "label": "密码",
+      "type": "string",
+      "validation": { "required": true, "minLength": 8 }
+    },
+    {
+      "key": "passwordConfirm",
+      "label": "确认密码",
+      "type": "string",
+      "validation": { "required": true }
+    },
+    { "key": "startDate", "label": "开始日期", "type": "date" },
+    { "key": "endDate", "label": "结束日期", "type": "date" }
+  ],
+  "crossFieldRules": [
+    {
+      "type": "match",
+      "field": "passwordConfirm",
+      "target": "password",
+      "message": "两次输入的密码不一致"
+    },
+    {
+      "type": "greaterThan",
+      "field": "endDate",
+      "target": "startDate",
+      "message": "结束日期必须晚于开始日期"
+    }
+  ]
+}
