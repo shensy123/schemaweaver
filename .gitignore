@@ -1,0 +1,72 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# =====================================================================
+# 仓库范围白名单：公开仓库只含前端应用代码与工程规范配置。
+# 先以 /* 忽略根级全部条目，再放行以下清单；治理资产与本地数据
+# （AGENTS.md、docs/、ai-workflow/、.agents/、_drafts/、prompts/、
+#  time-tracker/、daily-report/、.zcode/ 等）一律不出库。
+# =====================================================================
+/*
+!.gitignore
+!.gitattributes
+!.editorconfig
+!.vscode/
+!.husky/
+!.github/
+!README.md
+!LICENSE
+!package.json
+!pnpm-lock.yaml
+!pnpm-workspace.yaml
+!next.config.ts
+!tsconfig.json
+!eslint.config.mjs
+!vitest.config.ts
+!.prettierrc
+!.prettierignore
+!commitlint.config.ts
+!/src/
+!/public/
+
+# husky 运行时生成物（钩子本体 .husky/pre-commit、commit-msg 入库）
+.husky/_/

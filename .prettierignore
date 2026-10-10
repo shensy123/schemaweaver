@@ -1,0 +1,22 @@
+# 构建产物与依赖
+node_modules
+.next
+out
+build
+coverage
+pnpm-lock.yaml
+
+# 静态资源
+public
+
+# 治理资产与本地数据区(不入公开仓库,不做 prettier 重排)
+docs
+ai-workflow
+.agents
+_drafts
+prompts
+time-tracker
+daily-report
+.zcode
+AGENTS.md
+.vscode
