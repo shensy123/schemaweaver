@@ -1,3 +1,8 @@
+/**
+ * 首页:M1 验收产物,静态预览四份能力示例 schema 的完整 JSON。
+ * 出处:briefs 01——schema v0.1 四能力示例定稿(动态渲染/跨字段校验/字段联动/动态增删行)。
+ * 约束:纯静态展示零交互;渲染引擎 M2 落地后本页改造为真表单演示。
+ */
 import dynamicRendering from '@/schema/examples/dynamic-rendering.json'
 import crossField from '@/schema/examples/cross-field-validation.json'
 import fieldLinkage from '@/schema/examples/field-linkage.json'

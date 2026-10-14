@@ -1,3 +1,8 @@
+/**
+ * 根布局(App Router):全局字体变量与站点 metadata 的唯一挂载点。
+ * 出处:briefs 01——M1 建仓,create-next-app 脚手架生成后仅适配中文 metadata。
+ * 约束:模板级文件保持极简,业务标记与内容一律由子路由/页面承载。
+ */
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import { Geist, Geist_Mono } from 'next/font/google'
