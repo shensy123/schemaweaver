@@ -36,6 +36,7 @@ export default function Home() {
           </pre>
         </section>
       ))}
+      <p style={{ marginTop: 32, color: '#71717a' }}>M1 · schema v0.1 · push main 即自动部署</p>
     </main>
   )
 }

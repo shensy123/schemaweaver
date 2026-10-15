@@ -15,7 +15,7 @@ Schema 驱动的表单引擎(个人学习项目):用一份 JSON Schema 描述表
 
 ## 在线 Demo
 
-<!-- 部署完成后回填 URL -->
+https://schemaweaver-nu.vercel.app/
 
 ## 本地开发
 
