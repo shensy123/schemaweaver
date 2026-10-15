@@ -1,0 +1,21 @@
+# 自动生成 Release Notes 的 PR 归类规则(基于 PR label,与 conventional commits 类型对应)
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+  categories:
+    - title: 🚀 Features
+      labels:
+        - feat
+    - title: 🐛 Bug Fixes
+      labels:
+        - fix
+    - title: 📚 Documentation
+      labels:
+        - docs
+    - title: 🧹 Chores
+      labels:
+        - chore
+    - title: Other Changes
+      labels:
+        - '*'

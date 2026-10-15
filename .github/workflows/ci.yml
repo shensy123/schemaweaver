@@ -3,9 +3,8 @@ name: CI
 on:
   push:
     branches: [main]
-  # 开始使用 Pull Request 工作流后,取消下面两行注释
-  # pull_request:
-  #   branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   ci:
