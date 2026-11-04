@@ -1,4 +1,4 @@
-/* M2 表单组件样式(原生 CSS Modules,零依赖拍板;暗色跟随 globals 颜色变量)。 */
+/* M2 表单组件样式(原生 CSS Modules,零依赖拍板):颜色/圆角一律经 --sw-* token 消费。 */
 
 .form {
   display: flex;
@@ -11,8 +11,8 @@
   flex-direction: column;
   gap: 12px;
   padding: 16px;
-  border: 1px solid #d4d4d8;
-  border-radius: 8px;
+  border: 1px solid var(--sw-color-border);
+  border-radius: var(--sw-radius-md);
 }
 
 .group-label {
@@ -34,7 +34,7 @@
 
 .required {
   margin-left: 4px;
-  color: #dc2626;
+  color: var(--sw-color-danger);
 }
 
 .control {
@@ -47,15 +47,15 @@
   width: 100%;
   min-width: 0;
   padding: 8px 10px;
-  border: 1px solid #d4d4d8;
-  border-radius: 6px;
+  border: 1px solid var(--sw-color-border);
+  border-radius: var(--sw-radius-sm);
   background: transparent;
   color: inherit;
   font: inherit;
 }
 
 .input:focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid var(--sw-color-primary);
   outline-offset: 1px;
 }
 
@@ -66,13 +66,13 @@
 }
 
 .error {
-  color: #dc2626;
+  color: var(--sw-color-danger);
   font-size: 13px;
   line-height: 1.4;
 }
 
 .empty-row {
-  color: #71717a;
+  color: var(--sw-color-muted);
   font-size: 13px;
 }
 
@@ -87,14 +87,14 @@
   gap: 8px;
   align-items: flex-start;
   padding: 8px;
-  border: 1px dashed #d4d4d8;
-  border-radius: 6px;
+  border: 1px dashed var(--sw-color-border);
+  border-radius: var(--sw-radius-sm);
 }
 
 .row-index {
   min-width: 20px;
   padding-top: 8px;
-  color: #71717a;
+  color: var(--sw-color-muted);
   font-size: 13px;
   text-align: right;
 }
@@ -106,8 +106,8 @@
 
 .remove-button {
   padding: 8px 10px;
-  border: 1px solid #d4d4d8;
-  border-radius: 6px;
+  border: 1px solid var(--sw-color-border);
+  border-radius: var(--sw-radius-sm);
   background: transparent;
   color: inherit;
   cursor: pointer;
@@ -116,9 +116,9 @@
 .add-button {
   align-self: flex-start;
   padding: 8px 14px;
-  border: 1px solid #2563eb;
-  border-radius: 6px;
+  border: 1px solid var(--sw-color-primary);
+  border-radius: var(--sw-radius-sm);
   background: transparent;
-  color: #2563eb;
+  color: var(--sw-color-primary);
   cursor: pointer;
 }

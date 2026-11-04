@@ -1,4 +1,4 @@
-/* M2 三形态外壳样式:page 直通/modal 居中弹窗/drawer 右侧抽屉(原生手写拍板)。 */
+/* M2 三形态外壳样式:page 直通/modal 居中弹窗/drawer 右侧抽屉(原生手写拍板);token 消费。 */
 
 .page {
   width: 100%;
@@ -9,7 +9,7 @@
   inset: 0;
   z-index: 50;
   display: flex;
-  background: rgb(0 0 0 / 50%);
+  background: var(--sw-color-scrim);
 }
 
 .modal {
@@ -18,10 +18,10 @@
   width: min(560px, calc(100vw - 32px));
   max-height: calc(100vh - 64px);
   margin: auto;
-  border-radius: 10px;
-  background: var(--background);
-  color: var(--foreground);
-  box-shadow: 0 20px 50px rgb(0 0 0 / 30%);
+  border-radius: var(--sw-radius-lg);
+  background: var(--sw-background);
+  color: var(--sw-foreground);
+  box-shadow: var(--sw-shadow-modal);
 }
 
 .drawer {
@@ -30,9 +30,9 @@
   width: min(440px, calc(100vw - 32px));
   height: 100vh;
   margin-left: auto;
-  background: var(--background);
-  color: var(--foreground);
-  box-shadow: -10px 0 40px rgb(0 0 0 / 25%);
+  background: var(--sw-background);
+  color: var(--sw-foreground);
+  box-shadow: var(--sw-shadow-drawer);
 }
 
 .header {
@@ -40,7 +40,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 14px 18px;
-  border-bottom: 1px solid #d4d4d8;
+  border-bottom: 1px solid var(--sw-color-border);
 }
 
 .title {
@@ -51,7 +51,7 @@
 .close {
   padding: 2px 10px;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--sw-radius-sm);
   background: transparent;
   color: inherit;
   font-size: 18px;

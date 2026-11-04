@@ -1,4 +1,4 @@
-/* M2 演示页样式:多模块编排+聚合状态条+统一提交+三形态切换区。 */
+/* M2 演示页样式:多模块编排+聚合状态条+统一提交+三形态切换区;token 消费。 */
 
 .page {
   display: flex;
@@ -10,7 +10,7 @@
 }
 
 .note {
-  color: #71717a;
+  color: var(--sw-color-muted);
 }
 
 .status-bar {
@@ -18,16 +18,16 @@
   flex-wrap: wrap;
   gap: 8px 16px;
   padding: 12px 16px;
-  border: 1px solid #d4d4d8;
-  border-radius: 8px;
+  border: 1px solid var(--sw-color-border);
+  border-radius: var(--sw-radius-md);
 }
 
 .ok {
-  color: #16a34a;
+  color: var(--sw-color-success);
 }
 
 .bad {
-  color: #dc2626;
+  color: var(--sw-color-danger);
 }
 
 .module {
@@ -37,7 +37,7 @@
 }
 
 .module-desc {
-  color: #71717a;
+  color: var(--sw-color-muted);
   font-size: 13px;
 }
 
@@ -51,9 +51,9 @@
 .submit {
   padding: 10px 20px;
   border: none;
-  border-radius: 8px;
-  background: #2563eb;
-  color: #fff;
+  border-radius: var(--sw-radius-md);
+  background: var(--sw-color-primary);
+  color: var(--sw-background);
   font-size: 15px;
   cursor: pointer;
 }
@@ -63,14 +63,14 @@
   flex-direction: column;
   gap: 12px;
   padding: 16px;
-  border: 1px solid #16a34a;
-  border-radius: 8px;
+  border: 1px solid var(--sw-color-success);
+  border-radius: var(--sw-radius-md);
 }
 
 .payload pre {
   padding: 12px;
-  border-radius: 6px;
-  background: #f4f4f5;
+  border-radius: var(--sw-radius-sm);
+  background: var(--sw-color-surface);
   overflow-x: auto;
   font-size: 13px;
 }
@@ -78,8 +78,8 @@
 .reset {
   align-self: flex-start;
   padding: 8px 14px;
-  border: 1px solid #d4d4d8;
-  border-radius: 6px;
+  border: 1px solid var(--sw-color-border);
+  border-radius: var(--sw-radius-sm);
   background: transparent;
   color: inherit;
   cursor: pointer;
@@ -100,17 +100,17 @@
 
 .picker-select {
   padding: 6px 8px;
-  border: 1px solid #d4d4d8;
-  border-radius: 6px;
+  border: 1px solid var(--sw-color-border);
+  border-radius: var(--sw-radius-sm);
   background: transparent;
   color: inherit;
 }
 
 .open {
   padding: 8px 14px;
-  border: 1px solid #2563eb;
-  border-radius: 6px;
+  border: 1px solid var(--sw-color-primary);
+  border-radius: var(--sw-radius-sm);
   background: transparent;
-  color: #2563eb;
+  color: var(--sw-color-primary);
   cursor: pointer;
 }
