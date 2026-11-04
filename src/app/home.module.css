@@ -1,0 +1,88 @@
+/* 首页导览样式(修复轮 C):卡片+显色按钮+hover 态,token 消费。 */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.intro {
+  line-height: 1.7;
+  color: var(--sw-foreground);
+}
+
+.hint {
+  color: var(--sw-color-muted);
+  font-size: 14px;
+}
+
+.parts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid var(--sw-color-border);
+  border-radius: var(--sw-radius-lg);
+  background: var(--sw-background);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.card:hover {
+  border-color: var(--sw-color-primary);
+  box-shadow: var(--sw-shadow-card);
+  transform: translateY(-2px);
+}
+
+.card-title {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.card-order {
+  margin-right: 8px;
+  color: var(--sw-color-primary);
+}
+
+.card-what {
+  flex: 1;
+  line-height: 1.7;
+  font-size: 14px;
+  color: var(--sw-color-muted);
+}
+
+.primary-btn {
+  align-self: flex-start;
+  padding: 10px 20px;
+  border-radius: var(--sw-radius-md);
+  background: var(--sw-color-primary);
+  color: var(--sw-color-on-primary);
+  font-weight: 500;
+  transition: background 0.15s ease;
+}
+
+.primary-btn:hover {
+  background: var(--sw-color-primary-strong);
+}
+
+.footer {
+  color: var(--sw-color-muted);
+  font-size: 13px;
+}

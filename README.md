@@ -12,11 +12,11 @@ Schema 驱动的表单引擎(个人学习项目):用一份 JSON Schema 描述表
 | 动态增删行(array 字段)          | M2 已实现 | `src/schema/examples/dynamic-rows.json`           |
 | 嵌套容器(object 分组嵌套,v0.2)  | M2 已实现 | `src/schema/examples/nested-containers.json`      |
 
-M2 交付:递归渲染器(RenderNode 树解析+React 薄壳)、联动引擎(单遍求值+隐藏子树剪枝)、校验聚合统一提交(全模块通过才放行,错误可定位跳转)、弹窗/抽屉/页面三形态外壳;引擎纯逻辑层 68 例单测。首页在线展示五份示例 schema;`/demo` 提供多模块全流程交互演示(填 → 联动 → 跨字段校验 → 统一提交,含三形态切换)。
+M2 交付:递归渲染器(RenderNode 树解析+React 薄壳)、联动引擎(单遍求值+隐藏子树剪枝)、校验聚合统一提交(全模块通过才放行,错误可定位跳转)、弹窗/抽屉/页面三形态外壳;引擎纯逻辑层 69 例单测。演示站三部分导览:`/examples` 示例库(五份 schema 卡片+高亮 JSON 弹窗)、`/flow` 表单全流程(填 → 联动 → 跨字段校验 → 统一提交)、`/shells` 三形态外壳切换。
 
 ## 在线 Demo
 
-https://schemaweaver-nu.vercel.app/(首页 schema 预览;`/demo` 为 M2 交互演示)
+https://schemaweaver-nu.vercel.app/(首页导览;`/examples`、`/flow`、`/shells` 三部分演示)
 
 ## 本地开发
 

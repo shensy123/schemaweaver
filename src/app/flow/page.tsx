@@ -1,16 +1,14 @@
 'use client'
 
 /**
- * M2 演示页:多模块表单全流程(填→联动→跨字段校验→统一提交→错误跳转)+ 三形态切换。
- * 出处:briefs 03——M2 验收口径(17 号任务书 §二):一个多模块表单页跑通全流程;
- * 页面只做编排——每模块一个引擎实例,聚合门禁走 engine/aggregate,不含引擎逻辑。
- * 约束:统一提交点击即全模块显示错误并跳转首个错误字段;三形态区独立引擎,切 schema 自动重置。
+ * 全流程演示页:四个模块跑通 填→联动→跨字段校验→统一提交(错误定位跳转)。
+ * 出处:briefs 03 修复轮 C——自原 /demo 表单区拆出独立路由;编排逻辑不变。
+ * 约束:统一提交点击即全模块显示错误并跳转首个错误字段;提交失败完整保留已填数据(A3 铁律)。
  */
-import { useEffect, useMemo, useState } from 'react'
+import Link from 'next/link'
+import { useMemo, useState } from 'react'
 
 import { SchemaForm } from '@/components/form/SchemaForm'
-import { FormShell } from '@/components/form/shells/FormShell'
-import type { FormShellVariant } from '@/components/form/shells/variants'
 import { useFormEngine } from '@/components/form/useFormEngine'
 import { aggregateModules } from '@/engine/aggregate/submit'
 import crossFieldSchema from '@/schema/examples/cross-field-validation.json'
@@ -19,22 +17,14 @@ import fieldLinkageSchema from '@/schema/examples/field-linkage.json'
 import nestedContainersSchema from '@/schema/examples/nested-containers.json'
 import type { FormSchema, FormValues } from '@/schema/types'
 
-import styles from './demo.module.css'
+import styles from './flow.module.css'
 
 const linkageSchema = fieldLinkageSchema as FormSchema
 const crossSchema = crossFieldSchema as FormSchema
 const rowsSchema = dynamicRowsSchema as FormSchema
 const nestedSchema = nestedContainersSchema as FormSchema
 
-/** 三形态演示区可选 schema(与主流程模块同源,展示"同一 schema 换壳") */
-const SHELL_SCHEMA_OPTIONS = [
-  { key: 'cross', schema: crossSchema },
-  { key: 'linkage', schema: linkageSchema },
-  { key: 'rows', schema: rowsSchema },
-  { key: 'nested', schema: nestedSchema },
-] as const
-
-export default function DemoPage() {
+export default function FlowPage() {
   const linkageEngine = useFormEngine(linkageSchema)
   const crossEngine = useFormEngine(crossSchema)
   const rowsEngine = useFormEngine(rowsSchema)
@@ -90,26 +80,18 @@ export default function DemoPage() {
     setSubmittedPayload(null)
   }
 
-  // 三形态演示区
-  const [shellSchemaKey, setShellSchemaKey] = useState<string>('cross')
-  const [shellVariant, setShellVariant] = useState<FormShellVariant>('modal')
-  const [shellOpen, setShellOpen] = useState(false)
-  const shellSchema =
-    SHELL_SCHEMA_OPTIONS.find((option) => option.key === shellSchemaKey)?.schema ?? crossSchema
-  const shellEngine = useFormEngine(shellSchema)
-
-  // 切换 schema 时清空该区表单(reset 引用经 useCallback 稳定,不会循环触发)
-  const shellReset = shellEngine.reset
-  useEffect(() => {
-    shellReset()
-  }, [shellReset, shellSchema])
-
   return (
     <main className={styles['page']}>
-      <h1>SchemaWeaver · M2 演示</h1>
-      <p className={styles['note']}>
-        四个模块跑通全流程:填 → 联动 → 跨字段校验 → 统一提交(全模块通过才放行,错误可跳转定位)。
-      </p>
+      <header className={styles['header']}>
+        <Link href="/" className={styles['back']}>
+          ← 返回导览
+        </Link>
+        <h1>表单全流程演示</h1>
+        <p className={styles['note']}>
+          检验:填写 → 联动显隐 → 跨字段校验 → 统一提交。四个模块全通过才放行;点击提交可定位首个错误,
+          提交失败时已填数据完整保留。
+        </p>
+      </header>
 
       <div className={styles['status-bar']}>
         {aggregate.modules.map((status) => (
@@ -131,7 +113,7 @@ export default function DemoPage() {
       ))}
 
       <div className={styles['submit-bar']}>
-        <button type="button" className={styles['submit']} onClick={handleSubmit}>
+        <button type="button" className={styles['primary-btn']} onClick={handleSubmit}>
           统一提交
         </button>
         <span className={aggregate.canSubmit ? styles['ok'] : styles['bad']}>
@@ -143,61 +125,11 @@ export default function DemoPage() {
         <section className={styles['payload']}>
           <h3>提交成功 · 聚合载荷(隐藏字段已剔除)</h3>
           <pre>{JSON.stringify(submittedPayload, null, 2)}</pre>
-          <button type="button" className={styles['reset']} onClick={handleReset}>
+          <button type="button" className={styles['ghost-btn']} onClick={handleReset}>
             重新填写
           </button>
         </section>
       ) : null}
-
-      <section className={styles['module']}>
-        <h2>三形态演示 · 同一 schema 切换弹窗/抽屉/页面</h2>
-        <p className={styles['module-desc']}>
-          选择 schema 与形态后打开:modal/drawer 含 Esc/backdrop 关闭、Tab 焦点圈禁、滚动锁。
-        </p>
-        <div className={styles['picker']}>
-          <label className={styles['picker-item']}>
-            schema:
-            <select
-              className={styles['picker-select']}
-              value={shellSchemaKey}
-              onChange={(event) => setShellSchemaKey(event.target.value)}
-            >
-              {SHELL_SCHEMA_OPTIONS.map((option) => (
-                <option key={option.key} value={option.key}>
-                  {option.schema.title}
-                </option>
-              ))}
-            </select>
-          </label>
-          {(['page', 'modal', 'drawer'] as const).map((variant) => (
-            <label key={variant} className={styles['picker-item']}>
-              <input
-                type="radio"
-                name="shell-variant"
-                checked={shellVariant === variant}
-                onChange={() => setShellVariant(variant)}
-              />
-              {variant}
-            </label>
-          ))}
-          <button
-            type="button"
-            className={styles['open']}
-            onClick={() => setShellOpen(true)}
-            disabled={shellVariant === 'page'}
-          >
-            打开(page 形态直接内联展示)
-          </button>
-        </div>
-        <FormShell
-          variant={shellVariant}
-          title={shellSchema.title}
-          open={shellVariant === 'page' ? true : shellOpen}
-          onClose={() => setShellOpen(false)}
-        >
-          <SchemaForm engine={shellEngine} idPrefix="shell" />
-        </FormShell>
-      </section>
     </main>
   )
 }

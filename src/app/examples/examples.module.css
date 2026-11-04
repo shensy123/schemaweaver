@@ -1,0 +1,132 @@
+/* 示例库页样式(修复轮 B2):卡片网格+JSON 高亮弹窗,token 消费。 */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.note {
+  line-height: 1.7;
+  color: var(--sw-color-muted);
+  font-size: 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid var(--sw-color-border);
+  border-radius: var(--sw-radius-lg);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.card:hover {
+  border-color: var(--sw-color-primary);
+  box-shadow: var(--sw-shadow-card);
+  transform: translateY(-2px);
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.card-order {
+  margin-right: 8px;
+  color: var(--sw-color-primary);
+}
+
+.card-intro {
+  flex: 1;
+  line-height: 1.7;
+  font-size: 14px;
+  color: var(--sw-color-muted);
+}
+
+.ghost-btn {
+  align-self: flex-start;
+  padding: 8px 16px;
+  border: 1px solid var(--sw-color-primary);
+  border-radius: var(--sw-radius-md);
+  background: transparent;
+  color: var(--sw-color-primary);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.ghost-btn:hover {
+  background: var(--sw-color-primary-soft);
+  border-color: var(--sw-color-primary-strong);
+}
+
+.viewer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.viewer-intro {
+  line-height: 1.7;
+  font-size: 14px;
+  color: var(--sw-color-muted);
+}
+
+.viewer-json {
+  padding: 12px;
+  border: 1px solid var(--sw-color-border);
+  border-radius: var(--sw-radius-sm);
+  background: var(--sw-color-surface);
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.token-key {
+  color: var(--sw-color-primary-strong);
+}
+
+.token-string {
+  color: var(--sw-color-success);
+}
+
+.token-bool {
+  color: var(--sw-color-danger);
+}
+
+.token-number {
+  color: var(--sw-color-muted);
+}
+
+.viewer-nav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.viewer-position {
+  color: var(--sw-color-muted);
+  font-size: 13px;
+}

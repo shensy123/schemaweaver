@@ -6,6 +6,9 @@
   --sw-color-border: #d4d4d8;
   --sw-color-muted: #71717a;
   --sw-color-primary: #2563eb;
+  --sw-color-primary-strong: #1d4ed8;
+  --sw-color-primary-soft: #eff6ff;
+  --sw-color-on-primary: #fff;
   --sw-color-danger: #dc2626;
   --sw-color-success: #16a34a;
   --sw-color-surface: #f4f4f5;
@@ -15,16 +18,19 @@
   --sw-radius-lg: 10px;
   --sw-shadow-modal: 0 20px 50px rgb(0 0 0 / 30%);
   --sw-shadow-drawer: -10px 0 40px rgb(0 0 0 / 25%);
+  --sw-shadow-card: 0 4px 16px rgb(0 0 0 / 8%);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* 暗色只覆写中性系,功能色沿用日间值(CoT css-style 母本"夜间只覆盖差异基色"同款) */
+    /* 暗色只覆写中性系与 primary 派生阶,功能色沿用日间值(CoT css-style 母本"夜间只覆盖差异基色"同款) */
     --sw-background: #0a0a0a;
     --sw-foreground: #ededed;
     --sw-color-border: #3f3f46;
     --sw-color-muted: #a1a1aa;
     --sw-color-surface: #27272a;
+    --sw-color-primary-strong: #3b82f6;
+    --sw-color-primary-soft: #172554;
   }
 }
 
