@@ -7,11 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "lint:style": "stylelint \"src/**/*.css\"",
     "typecheck": "tsc --noEmit",
     "test:unit": "vitest run",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "check": "pnpm run typecheck && pnpm run lint && pnpm run format:check && pnpm run test:unit && pnpm run build",
+    "check": "pnpm run typecheck && pnpm run lint && pnpm run lint:style && pnpm run format:check && pnpm run test:unit && pnpm run build",
     "prepare": "husky"
   },
   "dependencies": {
@@ -34,6 +35,8 @@
     "jsdom": "^30.1.2",
     "lint-staged": "^17.6.0",
     "prettier": "^3.9.9",
+    "stylelint": "^16.26.1",
+    "stylelint-config-standard": "^38.0.0",
     "typescript": "^5",
     "vitest": "^4.1.11"
   },
@@ -43,7 +46,11 @@
       "eslint --fix",
       "prettier --write"
     ],
-    "*.{json,css}": [
+    "*.json": [
+      "prettier --write"
+    ],
+    "*.css": [
+      "stylelint --fix",
       "prettier --write"
     ]
   }
