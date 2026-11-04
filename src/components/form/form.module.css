@@ -1,0 +1,124 @@
+/* M2 表单组件样式(原生 CSS Modules,零依赖拍板;暗色跟随 globals 颜色变量)。 */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #d4d4d8;
+  border-radius: 8px;
+}
+
+.group-label {
+  padding: 0 4px;
+  font-weight: 600;
+}
+
+.field {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 8px 12px;
+  align-items: start;
+}
+
+.label {
+  padding-top: 8px;
+  line-height: 1.4;
+}
+
+.required {
+  margin-left: 4px;
+  color: #dc2626;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.input {
+  width: 100%;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid #d4d4d8;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+.input:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 1px;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  margin-top: 8px;
+}
+
+.error {
+  color: #dc2626;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.empty-row {
+  color: #71717a;
+  font-size: 13px;
+}
+
+.row-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 8px;
+  border: 1px dashed #d4d4d8;
+  border-radius: 6px;
+}
+
+.row-index {
+  min-width: 20px;
+  padding-top: 8px;
+  color: #71717a;
+  font-size: 13px;
+  text-align: right;
+}
+
+.cell {
+  flex: 1;
+  min-width: 0;
+}
+
+.remove-button {
+  padding: 8px 10px;
+  border: 1px solid #d4d4d8;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.add-button {
+  align-self: flex-start;
+  padding: 8px 14px;
+  border: 1px solid #2563eb;
+  border-radius: 6px;
+  background: transparent;
+  color: #2563eb;
+  cursor: pointer;
+}
