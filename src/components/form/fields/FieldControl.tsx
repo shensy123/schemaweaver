@@ -15,17 +15,21 @@ import styles from '../form.module.css'
 export function FieldControl({
   field,
   engine,
+  idPrefix = '',
 }: {
   field: FieldSchema
   engine: UseFormEngineResult
+  /** ID 命名空间(见 SchemaForm.idPrefix) */
+  idPrefix?: string
 }) {
   const value = engine.values[field.key]
   const showError = engine.shouldShow(field.key)
   const errors = engine.fieldErrors(field.key)
-  const inputId = `field-${field.key}-input`
+  const wrapperId = `field-${idPrefix ? `${idPrefix}-` : ''}${field.key}`
+  const inputId = `${wrapperId}-input`
 
   return (
-    <div className={styles['field']} id={`field-${field.key}`}>
+    <div className={styles['field']} id={wrapperId}>
       <label className={styles['label']} htmlFor={inputId}>
         {field.label}
         {field.validation?.required === true ? <span className={styles['required']}>*</span> : null}

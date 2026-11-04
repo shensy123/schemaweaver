@@ -11,7 +11,16 @@ import type { ArrayRow } from '@/engine/core/types'
 import type { UseFormEngineResult } from '../useFormEngine'
 import styles from '../form.module.css'
 
-export function ArrayField({ field, engine }: { field: FieldSchema; engine: UseFormEngineResult }) {
+export function ArrayField({
+  field,
+  engine,
+  idPrefix = '',
+}: {
+  field: FieldSchema
+  engine: UseFormEngineResult
+  /** ID 命名空间(见 SchemaForm.idPrefix) */
+  idPrefix?: string
+}) {
   if (field.type !== 'array') return null
   const columns = field.columns ?? []
   const rows: ArrayRow[] = Array.isArray(engine.values[field.key])
@@ -22,7 +31,10 @@ export function ArrayField({ field, engine }: { field: FieldSchema; engine: UseF
   const fieldLevelErrors = errors.filter((error) => error.row === undefined)
 
   return (
-    <fieldset className={styles['group']} id={`field-${field.key}`}>
+    <fieldset
+      className={styles['group']}
+      id={`field-${idPrefix ? `${idPrefix}-` : ''}${field.key}`}
+    >
       <legend className={styles['group-label']}>
         {field.label}
         {field.validation?.required === true ? <span className={styles['required']}>*</span> : null}

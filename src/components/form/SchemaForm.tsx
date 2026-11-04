@@ -12,29 +12,44 @@ import { FieldControl } from './fields/FieldControl'
 import type { UseFormEngineResult } from './useFormEngine'
 import styles from './form.module.css'
 
-export function SchemaForm({ engine }: { engine: UseFormEngineResult }) {
+export function SchemaForm({
+  engine,
+  idPrefix = '',
+}: {
+  engine: UseFormEngineResult
+  /** ID 命名空间(多模块同页/跨 schema 键重复时防 ID 撞车),如模块 key */
+  idPrefix?: string
+}) {
   return (
     <div className={styles['form']}>
       {engine.renderNodes.map((node) => (
-        <RenderNodeView key={node.field.key} node={node} engine={engine} />
+        <RenderNodeView key={node.field.key} node={node} engine={engine} idPrefix={idPrefix} />
       ))}
     </div>
   )
 }
 
-function RenderNodeView({ node, engine }: { node: RenderNode; engine: UseFormEngineResult }) {
+function RenderNodeView({
+  node,
+  engine,
+  idPrefix,
+}: {
+  node: RenderNode
+  engine: UseFormEngineResult
+  idPrefix: string
+}) {
   if (node.kind === 'group') {
     return (
       <fieldset className={styles['group']}>
         <legend className={styles['group-label']}>{node.field.label}</legend>
         {node.children.map((child) => (
-          <RenderNodeView key={child.field.key} node={child} engine={engine} />
+          <RenderNodeView key={child.field.key} node={child} engine={engine} idPrefix={idPrefix} />
         ))}
       </fieldset>
     )
   }
   if (node.field.type === 'array') {
-    return <ArrayField field={node.field} engine={engine} />
+    return <ArrayField field={node.field} engine={engine} idPrefix={idPrefix} />
   }
-  return <FieldControl field={node.field} engine={engine} />
+  return <FieldControl field={node.field} engine={engine} idPrefix={idPrefix} />
 }
