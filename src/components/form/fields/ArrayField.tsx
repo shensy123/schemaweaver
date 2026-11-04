@@ -3,7 +3,7 @@
 /**
  * array 字段控件:动态增删行 + 行内三型列输入(string/number/select)+ 逐格错误展示。
  * 出处:briefs 03——M2 UI 薄壳层;行操作走 reducer(ADD_ROW/REMOVE_ROW/UPDATE_CELL)。
- * 约束:行值为对象数组,列键即单元格键;触碰任一格即触碰整字段(错误显示门槛)。
+ * 约束:行值为对象数组,列键即单元格键;输入任一格即触碰整字段(错误实时显示,修复轮 A1)。
  */
 import type { ArrayColumn, FieldSchema } from '@/schema/types'
 import type { ArrayRow } from '@/engine/core/types'

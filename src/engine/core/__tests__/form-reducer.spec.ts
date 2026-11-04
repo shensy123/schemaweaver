@@ -12,7 +12,7 @@ describe('engine/core/form-reducer', () => {
     expect(state.submitted).toBe(false)
   })
 
-  it('SET_FIELD 落值;同值重复派发不产生新状态(引用不变)', () => {
+  it('SET_FIELD 落值并标记触碰(输入即校验);同值重复派发不产生新状态(引用不变)', () => {
     // Arrange
     const state = createInitialState()
     // Act
@@ -20,6 +20,7 @@ describe('engine/core/form-reducer', () => {
     const again = formReducer(next, { type: 'SET_FIELD', key: 'name', value: '张三' })
     // Assert
     expect(next.values['name']).toBe('张三')
+    expect(next.touched['name']).toBe(true)
     expect(again).toBe(next)
   })
 
@@ -70,7 +71,7 @@ describe('engine/core/form-reducer', () => {
     expect(next.values['members']).toEqual([{ name: '乙' }])
   })
 
-  it('UPDATE_CELL 定位到目标行目标列,不影响其他行', () => {
+  it('UPDATE_CELL 定位到目标行目标列,不影响其他行,并标记整字段触碰', () => {
     // Arrange
     let state = createInitialState()
     state = formReducer(state, { type: 'ADD_ROW', key: 'members' })
@@ -85,6 +86,18 @@ describe('engine/core/form-reducer', () => {
     })
     // Assert
     expect(next.values['members']).toEqual([{}, { age: 30 }])
+    expect(next.touched['members']).toBe(true)
+  })
+
+  it('输入即触碰语义:值变化即交互,错误显示门槛随输入实时生效(A1 修复轮)', () => {
+    // Arrange
+    let state = createInitialState()
+    // Act: 输入一个不满足 minLength 的值
+    state = formReducer(state, { type: 'SET_FIELD', key: 'nickname', value: '甲' })
+    // Assert: 未 blur 也已触碰——UI 的 shouldShow 门槛即刻放行,错误随输入实时出现/清除
+    expect(state.touched['nickname']).toBe(true)
+    const cleared = formReducer(state, { type: 'SET_FIELD', key: 'nickname', value: '甲乙' })
+    expect(cleared.touched['nickname']).toBe(true)
   })
 
   it('SUBMIT_ATTEMPT 置位提交标记,重复派发引用不变;RESET 回到初始', () => {

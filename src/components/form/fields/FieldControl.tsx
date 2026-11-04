@@ -3,7 +3,7 @@
 /**
  * 标量字段控件壳:label/required 标记/错误展示 + 五型输入(string/number/boolean/select/date)。
  * 出处:briefs 03——M2 UI 薄壳层;值类型转换收敛在此,引擎只收原始值。
- * 约束:受控组件;错误仅在触碰或提交尝试后显示(engine.shouldShow 门槛)。
+ * 约束:受控组件;错误在触碰(含输入即触碰,修复轮 A1)或提交尝试后实时显示。
  */
 import type { ReactNode } from 'react'
 
