@@ -1,0 +1,109 @@
+{
+  "version": "0.2",
+  "title": "项目立项登记",
+  "description": "演示嵌套容器:object 分组多层嵌套、object 内含 array 行、条件显隐容器整棵子树剪枝",
+  "fields": [
+    {
+      "key": "projectName",
+      "label": "项目名称",
+      "type": "string",
+      "validation": { "required": true, "minLength": 2 }
+    },
+    {
+      "key": "projectType",
+      "label": "项目类型",
+      "type": "select",
+      "options": [
+        { "label": "自研", "value": "internal" },
+        { "label": "外包", "value": "outsourced" }
+      ],
+      "validation": { "required": true }
+    },
+    {
+      "key": "scheduleInfo",
+      "label": "进度计划",
+      "type": "object",
+      "fields": [
+        { "key": "startDate", "label": "启动日期", "type": "date" },
+        {
+          "key": "extension",
+          "label": "延期设置",
+          "type": "object",
+          "fields": [
+            { "key": "hasExtension", "label": "是否延期", "type": "boolean" },
+            {
+              "key": "extensionReason",
+              "label": "延期原因",
+              "type": "string",
+              "visibleWhen": { "field": "hasExtension", "equals": true },
+              "validation": { "required": true, "minLength": 5 }
+            }
+          ]
+        },
+        {
+          "key": "milestones",
+          "label": "里程碑",
+          "type": "array",
+          "columns": [
+            {
+              "key": "name",
+              "label": "名称",
+              "type": "string",
+              "validation": { "required": true }
+            },
+            {
+              "key": "kind",
+              "label": "类别",
+              "type": "select",
+              "options": [
+                { "label": "需求", "value": "requirement" },
+                { "label": "开发", "value": "dev" },
+                { "label": "联调", "value": "qa" }
+              ],
+              "validation": { "required": true }
+            },
+            {
+              "key": "budgetDays",
+              "label": "预算人日",
+              "type": "number",
+              "validation": { "min": 0 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "outsourcingInfo",
+      "label": "外包信息",
+      "type": "object",
+      "visibleWhen": { "field": "projectType", "equals": "outsourced" },
+      "fields": [
+        {
+          "key": "vendorName",
+          "label": "供应商名称",
+          "type": "string",
+          "validation": { "required": true }
+        },
+        {
+          "key": "vendorContacts",
+          "label": "供应商联系人",
+          "type": "array",
+          "columns": [
+            {
+              "key": "name",
+              "label": "姓名",
+              "type": "string",
+              "validation": { "required": true }
+            },
+            {
+              "key": "phone",
+              "label": "电话",
+              "type": "string",
+              "validation": { "pattern": "^1\\d{10}$", "message": "请输入 11 位手机号" }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

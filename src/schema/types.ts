@@ -1,9 +1,11 @@
 /**
- * SchemaWeaver Schema v0.1 类型定义
+ * SchemaWeaver Schema v0.2 类型定义
  *
  * 设计原则:schema 是纯数据(JSON 可序列化),引擎负责一切行为。
  * 只描述"表单长什么样、怎么校验、怎么联动",不含任何逻辑代码。
- * 出处:briefs 01——schema v0.1 类型定稿(四能力示例同批落位)。
+ * 出处:briefs 01——schema v0.1 类型定稿;briefs 03——v0.2 嵌套容器扩展
+ * (2026-11-04 拍板):新增 object 容器型与 fields 嵌套;字段 key 全表单扁平唯一,
+ * 值模型与 v0.1 兼容(容器不产生值层级)。
  */
 
 /** 控件类型 */
@@ -14,6 +16,7 @@ export type FieldType =
   | 'select' // 下拉单选
   | 'date' // 日期(值为 ISO 字符串 YYYY-MM-DD)
   | 'array' // 动态增删行(值为对象数组,行结构由 columns 描述)
+  | 'object' // 容器分组(自身不产生值,仅组织渲染层级;子字段由 fields 描述)
 
 export interface FieldOption {
   label: string
@@ -66,6 +69,8 @@ export interface FieldSchema {
   visibleWhen?: VisibleWhen
   /** type 为 array 时必填:行内列定义 */
   columns?: ArrayColumn[]
+  /** type 为 object 时必填:子字段列表(可继续嵌套 object/array;key 仍须全表单唯一) */
+  fields?: FieldSchema[]
 }
 
 /**
@@ -87,8 +92,8 @@ export type FormValues = Record<string, unknown>
 
 /** 表单 Schema 顶层结构 */
 export interface FormSchema {
-  /** schema 版本号,为将来迁移留钩子 */
-  version: '0.1'
+  /** schema 版本号,为将来迁移留钩子;v0.2 为 v0.1 超集(v0.1 schema 依然合法) */
+  version: '0.1' | '0.2'
   title: string
   description?: string
   fields: FieldSchema[]
