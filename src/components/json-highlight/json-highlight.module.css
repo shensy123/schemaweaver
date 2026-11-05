@@ -1,0 +1,17 @@
+/* JSON 语法高亮配色(修复轮 2 公共组件):四类 token,一律 --sw-* 消费。 */
+
+.token-key {
+  color: var(--sw-color-primary-strong);
+}
+
+.token-string {
+  color: var(--sw-color-success);
+}
+
+.token-bool {
+  color: var(--sw-color-danger);
+}
+
+.token-number {
+  color: var(--sw-color-muted);
+}

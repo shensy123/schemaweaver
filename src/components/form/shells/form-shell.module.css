@@ -24,6 +24,18 @@
   box-shadow: var(--sw-shadow-modal);
 }
 
+.modal-wide {
+  display: flex;
+  flex-direction: column;
+  width: min(720px, calc(100vw - 32px));
+  max-height: calc(100vh - 64px);
+  margin: auto;
+  border-radius: var(--sw-radius-lg);
+  background: var(--sw-background);
+  color: var(--sw-foreground);
+  box-shadow: var(--sw-shadow-modal);
+}
+
 .drawer {
   display: flex;
   flex-direction: column;

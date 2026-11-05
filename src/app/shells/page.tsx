@@ -66,8 +66,8 @@ export default function ShellsPage() {
         </Link>
         <h1>三形态外壳演示</h1>
         <p className={styles['note']}>
-          检验:同一份 schema,换壳不改内容。选 schema 与形态后打开——modal/drawer 含
-          Esc、遮罩点击、Tab 焦点圈禁、滚动锁(原生手写)。
+          同一份表单换三种「外壳」展示:整页铺开(page)、居中弹窗(modal)、右侧抽屉(drawer)——内容不变,壳可换。弹窗/抽屉支持
+          Esc 关闭、点空白处关闭、键盘 Tab 焦点锁定在壳内、背景页面锁定不滚动。
         </p>
       </header>
 

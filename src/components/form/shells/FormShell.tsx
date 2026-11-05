@@ -20,12 +20,15 @@ export function FormShell({
   title,
   open = true,
   onClose,
+  wide = false,
   children,
 }: {
   variant: FormShellVariant
   title: string
   open?: boolean
   onClose?: () => void
+  /** modal 专属加宽档(720px,修复轮 2:提交成功双栏弹窗);drawer 不受影响 */
+  wide?: boolean
   children: ReactNode
 }) {
   const behavior = SHELL_VARIANTS[variant]
@@ -94,7 +97,9 @@ export function FormShell({
     >
       <div
         ref={dialogRef}
-        className={variant === 'modal' ? styles['modal'] : styles['drawer']}
+        className={
+          variant === 'modal' ? (wide ? styles['modal-wide'] : styles['modal']) : styles['drawer']
+        }
         role="dialog"
         aria-modal="true"
         aria-label={title}

@@ -1,18 +1,25 @@
-/* 全流程演示页样式(修复轮 C,自 demo.module.css 拆分精简):token 消费+显色按钮。 */
+/* 全流程页样式(修复轮 2):视口高布局——标题吸顶+表单区容器内滚+底栏常驻;token 消费。 */
 
 .page {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  height: 100dvh;
   max-width: 860px;
   margin: 0 auto;
-  padding: 32px 24px;
+  padding: 0 24px;
 }
 
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding: 18px 0 14px;
+  background: var(--sw-background);
+  border-bottom: 1px solid var(--sw-color-border);
+  box-shadow: var(--sw-shadow-card);
 }
 
 .back {
@@ -31,21 +38,14 @@
   font-size: 14px;
 }
 
-.status-bar {
+.form-scroll {
+  flex: 1;
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-  padding: 12px 16px;
-  border: 1px solid var(--sw-color-border);
-  border-radius: var(--sw-radius-md);
-}
-
-.ok {
-  color: var(--sw-color-success);
-}
-
-.bad {
-  color: var(--sw-color-danger);
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 4px 24px 0;
+  overflow-y: auto;
+  min-height: 0;
 }
 
 .module {
@@ -60,9 +60,54 @@
 }
 
 .submit-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 12px 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0 18px;
+  background: var(--sw-background);
+  border-top: 1px solid var(--sw-color-border);
+  box-shadow: var(--sw-shadow-card);
+}
+
+.error-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.summary-item {
+  padding: 6px 12px;
+  border: 1px solid var(--sw-color-border);
+  border-radius: var(--sw-radius-sm);
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.summary-item:hover {
+  border-color: var(--sw-color-primary);
+  background: var(--sw-color-primary-soft);
+}
+
+.ok {
+  color: var(--sw-color-success);
+}
+
+.bad {
+  color: var(--sw-color-danger);
+}
+
+.submit-actions {
+  display: flex;
+  gap: 12px;
   align-items: center;
 }
 
@@ -99,19 +144,115 @@
   background: var(--sw-color-primary-soft);
 }
 
-.payload {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 16px;
-  border: 1px solid var(--sw-color-success);
-  border-radius: var(--sw-radius-md);
+/* 提交成功弹窗(wide modal 720):左状态右数据双栏 */
+
+.success {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 20px;
+  min-height: 0;
 }
 
-.payload pre {
+.success-title {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.success-module {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px;
+  border: 1px solid var(--sw-color-border);
+  border-radius: var(--sw-radius-sm);
+  font-size: 13px;
+}
+
+.success-module + .success-module {
+  margin-top: 8px;
+}
+
+.success-meta {
+  color: var(--sw-color-muted);
+  font-size: 12px;
+}
+
+.success-hint {
+  margin-top: 10px;
+  color: var(--sw-color-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.success-right {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.success-toolbar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.success-json {
+  max-height: 52vh;
   padding: 12px;
+  border: 1px solid var(--sw-color-border);
   border-radius: var(--sw-radius-sm);
   background: var(--sw-color-surface);
-  overflow-x: auto;
+  overflow: auto;
   font-size: 13px;
+  line-height: 1.6;
+}
+
+.success-tables {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: 52vh;
+  overflow-y: auto;
+}
+
+.table-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.table-title {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.table th,
+.table td {
+  padding: 6px 8px;
+  border: 1px solid var(--sw-color-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.table th {
+  background: var(--sw-color-surface);
+  font-weight: 600;
+}
+
+.table-path {
+  font-family: var(--font-geist-mono, monospace);
+  color: var(--sw-color-primary-strong);
+}
+
+@media (width <= 640px) {
+  .success {
+    grid-template-columns: 1fr;
+  }
 }
