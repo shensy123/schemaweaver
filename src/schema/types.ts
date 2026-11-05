@@ -71,6 +71,11 @@ export interface FieldSchema {
   columns?: ArrayColumn[]
   /** type 为 object 时必填:子字段列表(可继续嵌套 object/array;key 仍须全表单唯一) */
   fields?: FieldSchema[]
+  /**
+   * 输入形态覆写(修复轮 3,2026-11-05 拍板):v0.2 仅 password——
+   * string 型字段渲染为掩码输入,值语义不变(仍是明文字符串)。
+   */
+  inputType?: 'password'
 }
 
 /**

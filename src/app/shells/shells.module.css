@@ -1,25 +1,39 @@
 /* 三形态演示页样式(修复轮 C):独立展示不与表单混排;token 消费+显色按钮。 */
 
+/* 页面骨架:全宽条带(band)+860 内容列(content)——同 examples(修复轮 3) */
+
 .page {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 0 24px 32px;
+  min-height: 100dvh;
 }
 
-.header {
+.band {
   position: sticky;
   top: 0;
   z-index: 10;
+  width: 100%;
+  background: var(--sw-background);
+  border-bottom: 1px solid var(--sw-color-border);
+}
+
+.band-inner {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 18px 0 14px;
-  background: var(--sw-background);
-  border-bottom: 1px solid var(--sw-color-border);
-  box-shadow: var(--sw-shadow-card);
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 18px 24px 14px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 24px 24px 32px;
 }
 
 .back {
@@ -75,6 +89,11 @@
   color: var(--sw-color-on-primary);
   cursor: pointer;
   transition: background 0.15s ease;
+}
+
+.primary-btn:focus-visible {
+  outline: 2px solid var(--sw-color-primary);
+  outline-offset: 2px;
 }
 
 .primary-btn:disabled {

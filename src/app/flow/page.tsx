@@ -132,52 +132,58 @@ export default function FlowPage() {
 
   return (
     <main className={styles['page']}>
-      <header className={styles['header']}>
-        <Link href="/" className={styles['back']}>
-          ← 返回导览
-        </Link>
-        <h1>表单全流程演示</h1>
-        <p className={styles['note']}>
-          亲手填一张四模块表单:字段会按你的选择出现/隐藏(联动),填错当场被拦(校验),全部通过才能统一提交——点错可一键跳回出错位置。
-        </p>
+      <header className={styles['band']}>
+        <div className={styles['band-inner']}>
+          <Link href="/" className={styles['back']}>
+            ← 返回导览
+          </Link>
+          <h1>表单全流程演示</h1>
+          <p className={styles['note']}>
+            亲手填一张四模块表单:字段会按你的选择出现/隐藏(联动),填错当场被拦(校验),全部通过才能统一提交——点错可一键跳回出错位置。
+          </p>
+        </div>
       </header>
 
       <section className={styles['form-scroll']} id="form-scroll">
-        {moduleList.map((mod) => (
-          <section key={mod.key} id={`module-${mod.key}`} className={styles['module']}>
-            <h2>{mod.schema.title}</h2>
-            {mod.schema.description ? (
-              <p className={styles['module-desc']}>{mod.schema.description}</p>
-            ) : null}
-            <SchemaForm engine={mod.engine} idPrefix={mod.key} />
-          </section>
-        ))}
-      </section>
-
-      <footer className={styles['submit-bar']}>
-        <div className={styles['error-summary']}>
-          {aggregate.modules.map((status) => (
-            <button
-              key={status.key}
-              type="button"
-              className={`${styles['summary-item']} ${status.valid ? styles['ok'] : styles['bad']}`}
-              onClick={() => locateModule(status.key)}
-              title="点击定位到该模块"
-            >
-              {status.valid ? '✓' : '✗'} {status.title}
-              {status.valid ? '' : ` · ${status.errorCount} 处错误`}
-            </button>
+        <div className={styles['form-inner']}>
+          {moduleList.map((mod) => (
+            <section key={mod.key} id={`module-${mod.key}`} className={styles['module']}>
+              <h2>{mod.schema.title}</h2>
+              {mod.schema.description ? (
+                <p className={styles['module-desc']}>{mod.schema.description}</p>
+              ) : null}
+              <SchemaForm engine={mod.engine} idPrefix={mod.key} />
+            </section>
           ))}
         </div>
-        <div className={styles['submit-actions']}>
-          {submittedPayload !== null ? (
-            <button type="button" className={styles['ghost-btn']} onClick={handleReset}>
-              重新填写
+      </section>
+
+      <footer className={styles['submit-band']}>
+        <div className={styles['submit-inner']}>
+          <div className={styles['error-summary']}>
+            {aggregate.modules.map((status) => (
+              <button
+                key={status.key}
+                type="button"
+                className={`${styles['summary-item']} ${status.valid ? styles['ok'] : styles['bad']}`}
+                onClick={() => locateModule(status.key)}
+                title="点击定位到该模块"
+              >
+                {status.valid ? '✓' : '✗'} {status.title}
+                {status.valid ? '' : ` · ${status.errorCount} 处错误`}
+              </button>
+            ))}
+          </div>
+          <div className={styles['submit-actions']}>
+            {submittedPayload !== null ? (
+              <button type="button" className={styles['ghost-btn']} onClick={handleReset}>
+                重新填写
+              </button>
+            ) : null}
+            <button type="button" className={styles['primary-btn']} onClick={handleSubmit}>
+              统一提交
             </button>
-          ) : null}
-          <button type="button" className={styles['primary-btn']} onClick={handleSubmit}>
-            统一提交
-          </button>
+          </div>
         </div>
       </footer>
 

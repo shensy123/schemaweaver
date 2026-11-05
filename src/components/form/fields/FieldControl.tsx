@@ -60,7 +60,7 @@ function renderInput(
         <input
           id={inputId}
           className={styles['input']}
-          type="text"
+          type={field.inputType === 'password' ? 'password' : 'text'}
           placeholder={field.placeholder}
           value={typeof value === 'string' ? value : ''}
           onChange={(event) => engine.setField(field.key, event.target.value)}

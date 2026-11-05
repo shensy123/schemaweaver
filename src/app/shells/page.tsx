@@ -60,64 +60,68 @@ export default function ShellsPage() {
 
   return (
     <main className={styles['page']}>
-      <header className={styles['header']}>
-        <Link href="/" className={styles['back']}>
-          ← 返回导览
-        </Link>
-        <h1>三形态外壳演示</h1>
-        <p className={styles['note']}>
-          同一份表单换三种「外壳」展示:整页铺开(page)、居中弹窗(modal)、右侧抽屉(drawer)——内容不变,壳可换。弹窗/抽屉支持
-          Esc 关闭、点空白处关闭、键盘 Tab 焦点锁定在壳内、背景页面锁定不滚动。
-        </p>
+      <header className={styles['band']}>
+        <div className={styles['band-inner']}>
+          <Link href="/" className={styles['back']}>
+            ← 返回导览
+          </Link>
+          <h1>三形态外壳演示</h1>
+          <p className={styles['note']}>
+            同一份表单换三种「外壳」展示:整页铺开(page)、居中弹窗(modal)、右侧抽屉(drawer)——内容不变,壳可换。弹窗/抽屉支持
+            Esc 关闭、点空白处关闭、键盘 Tab 焦点锁定在壳内、背景页面锁定不滚动。
+          </p>
+        </div>
       </header>
 
-      <section className={styles['picker']}>
-        <label className={styles['picker-item']}>
-          schema:
-          <select
-            className={styles['picker-select']}
-            value={schemaKey}
-            onChange={(event) => switchSchema(event.target.value)}
-          >
-            {SCHEMA_OPTIONS.map((option) => (
-              <option key={option.key} value={option.key}>
-                {option.schema.title}
-              </option>
+      <div className={styles['content']}>
+        <section className={styles['picker']}>
+          <label className={styles['picker-item']}>
+            schema:
+            <select
+              className={styles['picker-select']}
+              value={schemaKey}
+              onChange={(event) => switchSchema(event.target.value)}
+            >
+              {SCHEMA_OPTIONS.map((option) => (
+                <option key={option.key} value={option.key}>
+                  {option.schema.title}
+                </option>
+              ))}
+            </select>
+          </label>
+          <div className={styles['variant-group']}>
+            {(Object.keys(VARIANT_NOTES) as FormShellVariant[]).map((item) => (
+              <label key={item} className={styles['picker-item']}>
+                <input
+                  type="radio"
+                  name="shell-variant"
+                  checked={variant === item}
+                  onChange={() => switchVariant(item)}
+                />
+                {item}
+              </label>
             ))}
-          </select>
-        </label>
-        <div className={styles['variant-group']}>
-          {(Object.keys(VARIANT_NOTES) as FormShellVariant[]).map((item) => (
-            <label key={item} className={styles['picker-item']}>
-              <input
-                type="radio"
-                name="shell-variant"
-                checked={variant === item}
-                onChange={() => switchVariant(item)}
-              />
-              {item}
-            </label>
-          ))}
-        </div>
-        <button
-          type="button"
-          className={styles['primary-btn']}
-          onClick={() => setOpen(true)}
-          disabled={variant === 'page'}
-        >
-          打开
-        </button>
-      </section>
-      <p className={styles['variant-note']}>{VARIANT_NOTES[variant]}</p>
+          </div>
+          <button
+            type="button"
+            className={styles['primary-btn']}
+            onClick={() => setOpen(true)}
+            disabled={variant === 'page'}
+          >
+            打开
+          </button>
+        </section>
+        <p className={styles['variant-note']}>{VARIANT_NOTES[variant]}</p>
 
-      <FormShell
-        variant={variant}
-        title={schema.title}
-        open={variant === 'page' ? true : open}
-        onClose={() => setOpen(false)}
-      >
-        <SchemaForm engine={engine} idPrefix="shell" />
-      </FormShell>
+        <FormShell
+          variant={variant}
+          title={schema.title}
+          open={variant === 'page' ? true : open}
+          onClose={() => setOpen(false)}
+        >
+          <SchemaForm engine={engine} idPrefix="shell" />
+        </FormShell>
+      </div>
     </main>
   )
 }

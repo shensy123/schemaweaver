@@ -61,9 +61,16 @@
   color: var(--sw-color-primary);
 }
 
-.card-what {
+.card-list {
   flex: 1;
-  line-height: 1.7;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 16px;
+}
+
+.card-item {
+  line-height: 1.6;
   font-size: 14px;
   color: var(--sw-color-muted);
 }
@@ -76,6 +83,11 @@
   color: var(--sw-color-on-primary);
   font-weight: 500;
   transition: background 0.15s ease;
+}
+
+.primary-btn:focus-visible {
+  outline: 2px solid var(--sw-color-primary);
+  outline-offset: 2px;
 }
 
 .primary-btn:hover {

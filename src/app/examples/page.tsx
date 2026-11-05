@@ -123,53 +123,57 @@ export default function ExamplesPage() {
 
   return (
     <main className={styles['page']}>
-      <header className={styles['header']}>
-        <Link href="/" className={styles['back']}>
-          ← 返回导览
-        </Link>
-        <h1>Schema 能力示例</h1>
-        <p className={styles['note']}>
-          每张卡片是一份「表单图纸」(JSON
-          数据):改图纸就能改表单。五张图纸分别演示字段怎么长出来、规则怎么写、条件怎么挂——想亲手填,去导览页进「表单全流程演示」。
-        </p>
+      <header className={styles['band']}>
+        <div className={styles['band-inner']}>
+          <Link href="/" className={styles['back']}>
+            ← 返回导览
+          </Link>
+          <h1>Schema 能力示例</h1>
+          <p className={styles['note']}>
+            每张卡片是一份「表单图纸」(JSON
+            数据):改图纸就能改表单。五张图纸分别演示字段怎么长出来、规则怎么写、条件怎么挂——想亲手填,去导览页进「表单全流程演示」。
+          </p>
+        </div>
       </header>
-      <div className={styles['grid']}>
-        {EXAMPLES.map((example, index) => (
-          <section key={example.key} className={styles['card']}>
-            <h2 className={styles['card-title']}>
-              <span className={styles['card-order']}>{example.order}</span>
-              {example.title}
-            </h2>
-            <div className={styles['chip-row']}>
-              {example.chips.map((chip) => (
-                <span key={chip} className={styles['chip']}>
-                  {chip}
-                </span>
-              ))}
-            </div>
-            <p className={styles['card-text']}>
-              <span className={styles['card-lead']}>JSON 说明:</span>
-              {example.mechanism}
-            </p>
-            <p className={styles['card-text']}>
-              <span className={styles['card-lead']}>使用场景:</span>
-              {example.scenario}
-            </p>
-            <p className={styles['card-text']}>
-              <span className={styles['card-lead']}>字段指引:</span>动手改这几个地方,页面立刻变样
-            </p>
-            <ul className={styles['guide']}>
-              {example.guide.map((item) => (
-                <li key={item} className={styles['guide-item']}>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <button type="button" className={styles['ghost-btn']} onClick={() => show(index)}>
-              查看数据
-            </button>
-          </section>
-        ))}
+      <div className={styles['content']}>
+        <div className={styles['grid']}>
+          {EXAMPLES.map((example, index) => (
+            <section key={example.key} className={styles['card']}>
+              <h2 className={styles['card-title']}>
+                <span className={styles['card-order']}>{example.order}</span>
+                {example.title}
+              </h2>
+              <div className={styles['chip-row']}>
+                {example.chips.map((chip) => (
+                  <span key={chip} className={styles['chip']}>
+                    {chip}
+                  </span>
+                ))}
+              </div>
+              <p className={styles['card-text']}>
+                <span className={styles['card-lead']}>JSON 说明:</span>
+                {example.mechanism}
+              </p>
+              <p className={styles['card-text']}>
+                <span className={styles['card-lead']}>使用场景:</span>
+                {example.scenario}
+              </p>
+              <p className={styles['card-text']}>
+                <span className={styles['card-lead']}>字段指引:</span>动手改这几个地方,页面立刻变样
+              </p>
+              <ul className={styles['guide']}>
+                {example.guide.map((item) => (
+                  <li key={item} className={styles['guide-item']}>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <button type="button" className={styles['ghost-btn']} onClick={() => show(index)}>
+                查看数据
+              </button>
+            </section>
+          ))}
+        </div>
       </div>
       <FormShell
         variant="modal"

@@ -1,25 +1,39 @@
 /* 示例库页样式(修复轮 2):三段式卡片+chips+吸顶标题+弹窗三段结构;token 消费。 */
 
+/* 页面骨架:全宽条带(band)+860 内容列(content)——条带铺满视口解决投影生硬(修复轮 3) */
+
 .page {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 0 24px 32px;
+  min-height: 100dvh;
 }
 
-.header {
+.band {
   position: sticky;
   top: 0;
   z-index: 10;
+  width: 100%;
+  background: var(--sw-background);
+  border-bottom: 1px solid var(--sw-color-border);
+}
+
+.band-inner {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 20px 0 14px;
-  background: var(--sw-background);
-  border-bottom: 1px solid var(--sw-color-border);
-  box-shadow: var(--sw-shadow-card);
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 18px 24px 14px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 24px 24px 32px;
 }
 
 .back {
@@ -42,7 +56,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 16px;
-  padding-top: 24px;
 }
 
 .card {
@@ -124,6 +137,11 @@
   transition:
     background 0.15s ease,
     border-color 0.15s ease;
+}
+
+.ghost-btn:focus-visible {
+  outline: 2px solid var(--sw-color-primary);
+  outline-offset: 2px;
 }
 
 .ghost-btn:hover {
