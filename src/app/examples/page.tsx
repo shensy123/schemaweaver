@@ -155,6 +155,9 @@ export default function ExamplesPage() {
               <span className={styles['card-lead']}>使用场景:</span>
               {example.scenario}
             </p>
+            <p className={styles['card-text']}>
+              <span className={styles['card-lead']}>字段指引:</span>动手改这几个地方,页面立刻变样
+            </p>
             <ul className={styles['guide']}>
               {example.guide.map((item) => (
                 <li key={item} className={styles['guide-item']}>
