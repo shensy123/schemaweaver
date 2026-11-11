@@ -1,0 +1,124 @@
+/* M2 表单组件样式(原生 CSS Modules,零依赖拍板):颜色/圆角一律经 --sw-* token 消费。 */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--sw-color-border);
+  border-radius: var(--sw-radius-md);
+}
+
+.group-label {
+  padding: 0 4px;
+  font-weight: 600;
+}
+
+.field {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 8px 12px;
+  align-items: start;
+}
+
+.label {
+  padding-top: 8px;
+  line-height: 1.4;
+}
+
+.required {
+  margin-left: 4px;
+  color: var(--sw-color-danger);
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.input {
+  width: 100%;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--sw-color-border);
+  border-radius: var(--sw-radius-sm);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--sw-color-primary);
+  outline-offset: 1px;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  margin-top: 8px;
+}
+
+.error {
+  color: var(--sw-color-danger);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.empty-row {
+  color: var(--sw-color-muted);
+  font-size: 13px;
+}
+
+.row-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 8px;
+  border: 1px dashed var(--sw-color-border);
+  border-radius: var(--sw-radius-sm);
+}
+
+.row-index {
+  min-width: 20px;
+  padding-top: 8px;
+  color: var(--sw-color-muted);
+  font-size: 13px;
+  text-align: right;
+}
+
+.cell {
+  flex: 1;
+  min-width: 0;
+}
+
+.remove-button {
+  padding: 8px 10px;
+  border: 1px solid var(--sw-color-border);
+  border-radius: var(--sw-radius-sm);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.add-button {
+  align-self: flex-start;
+  padding: 8px 14px;
+  border: 1px solid var(--sw-color-primary);
+  border-radius: var(--sw-radius-sm);
+  background: transparent;
+  color: var(--sw-color-primary);
+  cursor: pointer;
+}

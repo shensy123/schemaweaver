@@ -1,0 +1,186 @@
+/* 示例库页样式(修复轮 2):三段式卡片+chips+吸顶标题+弹窗三段结构;token 消费。 */
+
+/* 页面骨架:全宽条带(band)+860 内容列(content)——条带铺满视口解决投影生硬(修复轮 3) */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.band {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  background: var(--sw-background);
+  border-bottom: 1px solid var(--sw-color-border);
+}
+
+.band-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 18px 24px 14px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 24px 24px 32px;
+}
+
+.back {
+  align-self: flex-start;
+  color: var(--sw-color-primary);
+  font-size: 14px;
+}
+
+.back:hover {
+  color: var(--sw-color-primary-strong);
+}
+
+.note {
+  line-height: 1.7;
+  color: var(--sw-color-muted);
+  font-size: 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid var(--sw-color-border);
+  border-radius: var(--sw-radius-lg);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.card:hover {
+  border-color: var(--sw-color-primary);
+  box-shadow: var(--sw-shadow-card);
+  transform: translateY(-2px);
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.card-order {
+  margin-right: 8px;
+  color: var(--sw-color-primary);
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  padding: 2px 10px;
+  border: 1px solid var(--sw-color-primary);
+  border-radius: 999px;
+  background: var(--sw-color-primary-soft);
+  color: var(--sw-color-primary-strong);
+  font-size: 12px;
+}
+
+.card-text {
+  line-height: 1.7;
+  font-size: 14px;
+  color: var(--sw-foreground);
+}
+
+.card-lead {
+  margin-right: 6px;
+  font-weight: 600;
+}
+
+.guide {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 18px;
+}
+
+.guide-item {
+  line-height: 1.6;
+  font-size: 13px;
+  color: var(--sw-color-muted);
+}
+
+.ghost-btn {
+  align-self: flex-start;
+  padding: 8px 16px;
+  border: 1px solid var(--sw-color-primary);
+  border-radius: var(--sw-radius-md);
+  background: transparent;
+  color: var(--sw-color-primary);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.ghost-btn:focus-visible {
+  outline: 2px solid var(--sw-color-primary);
+  outline-offset: 2px;
+}
+
+.ghost-btn:hover {
+  background: var(--sw-color-primary-soft);
+  border-color: var(--sw-color-primary-strong);
+}
+
+.viewer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+}
+
+.viewer-intro {
+  line-height: 1.7;
+  font-size: 14px;
+  color: var(--sw-foreground);
+}
+
+.viewer-json {
+  max-height: 46vh;
+  padding: 12px;
+  border: 1px solid var(--sw-color-border);
+  border-radius: var(--sw-radius-sm);
+  background: var(--sw-color-surface);
+  overflow: auto;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.viewer-nav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.viewer-position {
+  color: var(--sw-color-muted);
+  font-size: 13px;
+}

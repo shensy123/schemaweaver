@@ -2,20 +2,21 @@
 
 Schema 驱动的表单引擎(个人学习项目):用一份 JSON Schema 描述表单的结构、校验与联动,由引擎负责渲染成可交互表单。
 
-## 能力规划(Schema v0.1)
+## 能力一览(Schema v0.2 · M2 已实现)
 
-| 能力                            | 状态        | 示例                                              |
-| ------------------------------- | ----------- | ------------------------------------------------- |
-| 动态渲染(schema → 多种控件)     | v0.1 已定义 | `src/schema/examples/dynamic-rendering.json`      |
-| 跨字段校验(match / greaterThan) | v0.1 已定义 | `src/schema/examples/cross-field-validation.json` |
-| 字段联动(条件显隐)              | v0.1 已定义 | `src/schema/examples/field-linkage.json`          |
-| 动态增删行(array 字段)          | v0.1 已定义 | `src/schema/examples/dynamic-rows.json`           |
+| 能力                            | 状态      | 示例                                              |
+| ------------------------------- | --------- | ------------------------------------------------- |
+| 动态渲染(schema → 六型控件)     | M2 已实现 | `src/schema/examples/dynamic-rendering.json`      |
+| 跨字段校验(match / greaterThan) | M2 已实现 | `src/schema/examples/cross-field-validation.json` |
+| 字段联动(条件显隐)              | M2 已实现 | `src/schema/examples/field-linkage.json`          |
+| 动态增删行(array 字段)          | M2 已实现 | `src/schema/examples/dynamic-rows.json`           |
+| 嵌套容器(object 分组嵌套,v0.2)  | M2 已实现 | `src/schema/examples/nested-containers.json`      |
 
-首页在线展示四份示例 schema 的完整 JSON;渲染引擎在后续里程碑实现。
+M2 交付:递归渲染器(RenderNode 树解析+React 薄壳)、联动引擎(单遍求值+隐藏子树剪枝)、校验聚合统一提交(全模块通过才放行,错误可定位跳转)、弹窗/抽屉/页面三形态外壳;引擎纯逻辑层 69 例单测。演示站三部分导览:`/examples` 示例库(五份 schema 卡片+高亮 JSON 弹窗)、`/flow` 表单全流程(填 → 联动 → 跨字段校验 → 统一提交)、`/shells` 三形态外壳切换。
 
 ## 在线 Demo
 
-https://schemaweaver-nu.vercel.app/
+https://schemaweaver-nu.vercel.app/(首页导览;`/examples`、`/flow`、`/shells` 三部分演示)
 
 ## 本地开发
 
@@ -32,18 +33,19 @@ pnpm dev # http://localhost:3000
 | `pnpm build`                        | 生产构建(含类型检查)              |
 | `pnpm start`                        | 启动生产服务器(需先 build)        |
 | `pnpm lint`                         | ESLint 检查                       |
+| `pnpm lint:style`                   | stylelint 样式检查                |
 | `pnpm typecheck`                    | TypeScript 类型检查(tsc --noEmit) |
 | `pnpm test:unit`                    | Vitest 单元测试                   |
 | `pnpm format` / `pnpm format:check` | Prettier 格式化 / 校验            |
-| `pnpm check`                        | 上述五闸门一键串联,全绿才算过     |
+| `pnpm check`                        | 上述六闸门一键串联,全绿才算过     |
 
 ## 开发方式
 
-AI 协作开发:架构决策与代码评审由本人主导,实现过程与 AI 结对完成,并以个人质量门禁体系约束产出——每次提交经 commitlint 规范校验,任务闭环须五闸门(typecheck / lint / format / test / build)全绿。
+AI 协作开发:架构决策与代码评审由本人主导,实现过程与 AI 结对完成,并以个人质量门禁体系约束产出——每次提交经 commitlint 规范校验,任务闭环须六闸门(typecheck / lint / lint:style / format / test / build)全绿。
 
 ## 技术栈
 
-Next.js 16(App Router)· React 19 · TypeScript · Vitest · Vercel 部署
+Next.js 16(App Router)· React 19 · TypeScript · 原生 CSS Modules · Vitest · Vercel 部署
 
 ## License
 

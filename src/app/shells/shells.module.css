@@ -1,0 +1,111 @@
+/* 三形态演示页样式(修复轮 C):独立展示不与表单混排;token 消费+显色按钮。 */
+
+/* 页面骨架:全宽条带(band)+860 内容列(content)——同 examples(修复轮 3) */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.band {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  background: var(--sw-background);
+  border-bottom: 1px solid var(--sw-color-border);
+}
+
+.band-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 18px 24px 14px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 24px 24px 32px;
+}
+
+.back {
+  align-self: flex-start;
+  color: var(--sw-color-primary);
+  font-size: 14px;
+}
+
+.back:hover {
+  color: var(--sw-color-primary-strong);
+}
+
+.note {
+  line-height: 1.7;
+  color: var(--sw-color-muted);
+  font-size: 14px;
+}
+
+.picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid var(--sw-color-border);
+  border-radius: var(--sw-radius-md);
+}
+
+.picker-item {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.variant-group {
+  display: flex;
+  gap: 16px;
+}
+
+.picker-select {
+  padding: 6px 8px;
+  border: 1px solid var(--sw-color-border);
+  border-radius: var(--sw-radius-sm);
+  background: transparent;
+  color: inherit;
+}
+
+.primary-btn {
+  padding: 8px 18px;
+  border: none;
+  border-radius: var(--sw-radius-md);
+  background: var(--sw-color-primary);
+  color: var(--sw-color-on-primary);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.primary-btn:focus-visible {
+  outline: 2px solid var(--sw-color-primary);
+  outline-offset: 2px;
+}
+
+.primary-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.primary-btn:hover:not(:disabled) {
+  background: var(--sw-color-primary-strong);
+}
+
+.variant-note {
+  color: var(--sw-color-muted);
+  font-size: 13px;
+}
