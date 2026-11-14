@@ -4,6 +4,7 @@
  * array 字段控件:动态增删行 + 行内三型列输入(string/number/select)+ 逐格错误展示。
  * 出处:briefs 03——M2 UI 薄壳层;行操作走 reducer(ADD_ROW/REMOVE_ROW/UPDATE_CELL)。
  * 约束:行值为对象数组,列键即单元格键;输入任一格即触碰整字段(错误实时显示,修复轮 A1)。
+ * 列首可见表头行:briefs 04 方案 A(纯展示分支,单元格 aria-label 通道保留不动)。
  */
 import type { ArrayColumn, FieldSchema } from '@/schema/types'
 import type { ArrayRow } from '@/engine/core/types'
@@ -39,11 +40,26 @@ export function ArrayField({
         {field.label}
         {field.validation?.required === true ? <span className={styles['required']}>*</span> : null}
       </legend>
-      {rows.length === 0 ? (
-        <p className={styles['empty-row']}>暂无条目,点击下方按钮添加</p>
-      ) : (
-        <div className={styles['row-list']}>
-          {rows.map((row, rowIndex) => (
+      <div className={styles['row-list']}>
+        {/* 列首表头行(briefs 04 方案 A):零行时仍显示——列结构是 schema 声明的固有信息 */}
+        <div className={`${styles['row']} ${styles['column-head']}`}>
+          <span className={styles['row-index']} aria-hidden="true" />
+          {columns.map((column) => (
+            <span className={styles['cell']} key={column.key}>
+              {column.label}
+            </span>
+          ))}
+          <span
+            className={`${styles['remove-button']} ${styles['head-action']}`}
+            aria-hidden="true"
+          >
+            删除
+          </span>
+        </div>
+        {rows.length === 0 ? (
+          <p className={styles['empty-row']}>暂无条目,点击下方按钮添加</p>
+        ) : (
+          rows.map((row, rowIndex) => (
             <div className={styles['row']} key={`row-${rowIndex}`}>
               <span className={styles['row-index']}>{rowIndex + 1}</span>
               {columns.map((column) => (
@@ -74,9 +90,9 @@ export function ArrayField({
                 删除
               </button>
             </div>
-          ))}
-        </div>
-      )}
+          ))
+        )}
+      </div>
       <button
         type="button"
         className={styles['add-button']}
