@@ -12,7 +12,9 @@ Schema 驱动的表单引擎(个人学习项目):用一份 JSON Schema 描述表
 | 动态增删行(array 字段)          | M2 已实现 | `src/schema/examples/dynamic-rows.json`           |
 | 嵌套容器(object 分组嵌套,v0.2)  | M2 已实现 | `src/schema/examples/nested-containers.json`      |
 
-M2 交付:递归渲染器(RenderNode 树解析+React 薄壳)、联动引擎(单遍求值+隐藏子树剪枝)、校验聚合统一提交(全模块通过才放行,错误可定位跳转)、弹窗/抽屉/页面三形态外壳;引擎纯逻辑层 69 例单测。演示站三部分导览:`/examples` 示例库(五份 schema 卡片+高亮 JSON 弹窗)、`/flow` 表单全流程(填 → 联动 → 跨字段校验 → 统一提交)、`/shells` 三形态外壳切换。
+M2 交付:递归渲染器(RenderNode 树解析+React 薄壳)、联动引擎(单遍求值+隐藏子树剪枝)、校验聚合统一提交(全模块通过才放行,错误可定位跳转)、弹窗/抽屉/页面三形态外壳;引擎层 56 例 + schema 层 9 例(纯逻辑合计 65 例)+ 组件层 4 例,全仓 69 例自动化单测全部通过。演示站三部分导览:`/examples` 示例库(五份 schema 卡片+高亮 JSON 弹窗)、`/flow` 表单全流程(填 → 联动 → 跨字段校验 → 统一提交)、`/shells` 三形态外壳切换。
+
+![表单全流程演示(/flow):联动字段、跨字段校验与动态增删行(列首表头)](assets/flow-demo.png)
 
 ## 在线 Demo
 

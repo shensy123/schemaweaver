@@ -99,6 +99,21 @@
   text-align: right;
 }
 
+/* 列首表头行(briefs 04 方案 A):复合 .row 骨架,首尾占位复用 row-index/remove-button
+   同款盒模型保证与数据行逐列对齐;文字色/字号在行级设置,由各列 span 继承 */
+.column-head {
+  border-style: solid;
+  background: var(--sw-color-surface);
+  color: var(--sw-color-muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* 表头行尾占位:隐藏的同宽"删除"文本,宽度随按钮样式自动跟随 */
+.head-action {
+  visibility: hidden;
+}
+
 .cell {
   flex: 1;
   min-width: 0;

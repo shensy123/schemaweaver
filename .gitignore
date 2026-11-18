@@ -68,6 +68,7 @@ next-env.d.ts
 !commitlint.config.ts
 !/src/
 !/public/
+!/assets/
 
 # husky 运行时生成物（钩子本体 .husky/pre-commit、commit-msg 入库）
 .husky/_/
